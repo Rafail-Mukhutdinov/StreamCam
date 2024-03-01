@@ -6,12 +6,6 @@ project(Template_Boost_Test)
 # asio regex algorithm date_time filesystem system program_options json thread
 set(BOOST_INCLUDE_LIBRARIES log asio regex algorithm date_time filesystem system program_options json thread ) # Укажите нужные вам компоненты Boost
 set(BOOST_ENABLE_CMAKE ON)
-include(FetchContent)
-FetchContent_Declare(
-  Boost
-  URL https://github.com/boostorg/boost/releases/download/boost-1.84.0/boost-1.84.0.7z # Укажите нужную вам версию Boost
-)
-FetchContent_MakeAvailable(Boost)
 
 # Подключите Google Test
 include(FetchContent)
@@ -28,9 +22,9 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # Добавьте ваши директории
-add_subdirectory(Project_1_Boost)
-add_subdirectory(Project_2)
-add_subdirectory(Project_3_Qt)
+
+add_subdirectory(Server)
+add_subdirectory(Client_Qt)
 add_subdirectory(Google_Test)
 
 # Включите Google Test
