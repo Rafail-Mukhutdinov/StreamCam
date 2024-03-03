@@ -8,6 +8,13 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(Boost_USE_STATIC_LIBS        ON)
+set(Boost_USE_DEBUG_LIBS        OFF)
+set(Boost_USE_RELEASE_LIBS       ON)
+set(Boost_USE_MULTITHREADED      ON)
+set(Boost_USE_STATIC_RUNTIME    OFF)
+set(Boost_NO_WARN_NEW_VERSIONS  ON)
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
@@ -41,7 +48,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Boost::asio Boost::regex Boost::algorithm Boost::json Boost::log Boost::property_tree)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
