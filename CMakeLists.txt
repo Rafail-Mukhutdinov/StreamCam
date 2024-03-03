@@ -1,6 +1,6 @@
 # CMakeLists.txt
 cmake_minimum_required(VERSION 3.27)
-project(Template_Boost_Test)
+project(StreamCam)
 
 # Подключите Boost
 # asio regex algorithm date_time filesystem system program_options json thread
@@ -24,7 +24,7 @@ enable_testing()
 # Добавьте ваши директории
 
 add_subdirectory(Server)
-add_subdirectory(Client_Qt)
+add_subdirectory(Client)
 add_subdirectory(Google_Test)
 
 # Включите Google Test
