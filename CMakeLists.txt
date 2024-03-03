@@ -4,8 +4,8 @@ project(StreamCam)
 
 # Подключите Boost
 # asio regex algorithm date_time filesystem system program_options json thread
-set(BOOST_INCLUDE_LIBRARIES log asio regex algorithm date_time filesystem system program_options json thread ) # Укажите нужные вам компоненты Boost
-set(BOOST_ENABLE_CMAKE ON)
+#set(BOOST_INCLUDE_LIBRARIES log asio regex algorithm date_time filesystem system program_options json thread ) # Укажите нужные вам компоненты Boost
+#set(BOOST_ENABLE_CMAKE ON)
 
 # Подключите Google Test
 include(FetchContent)
@@ -24,7 +24,7 @@ enable_testing()
 # Добавьте ваши директории
 
 add_subdirectory(Server)
-add_subdirectory(Client)
+#add_subdirectory(Client)
 add_subdirectory(Google_Test)
 
 # Включите Google Test
