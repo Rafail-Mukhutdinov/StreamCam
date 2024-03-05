@@ -11,16 +11,18 @@ extern "C"
 class device
 {
 private:
-     char* name_devace;
+     const char* name_devace;
 
 
 private:
-    bool openInputDevice(AVFormatContext** in_context);    
+    bool openInputDevice(AVFormatContext** in_context);   
+
+    void readAndPrintPacketData(AVFormatContext* context, AVPacket* packet); 
 
 public:
     void output_data_as_text(AVFormatContext* in_context, AVPacket* in_packet);
 
-    device(char* n_device):name_devace(n_device){};
+    device(const char* n_device):name_devace(n_device){};
     //~device();
 };
 

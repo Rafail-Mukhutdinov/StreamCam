@@ -17,17 +17,19 @@ set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
 set(Boost_NO_WARN_NEW_VERSIONS  ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia) # Добавлен компонент Multimedia
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia) # Добавлен компонент Multimedia
 
 # Ищем библиотеки FFmpeg с помощью pkg-config
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavcodec libavformat libavutil libavfilter libavdevice libswscale libswresample)
 
+# Ищем библиотеку SDL2
+find_package(SDL2 REQUIRED)
+
 set(PROJECT_SOURCES
         client.cpp
-        device.cpp
-        device.h
+        sdl_check.h
         widget.cpp
         widget.h
         widget.ui
@@ -42,7 +44,7 @@ else()
     add_executable(client ${PROJECT_SOURCES})
 endif()
 
-target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets PkgConfig::FFMPEG Boost::asio Boost::regex Boost::algorithm Boost::json Boost::log Boost::property_tree)
+target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia PkgConfig::FFMPEG Boost::asio Boost::regex Boost::algorithm Boost::json Boost::log Boost::property_tree SDL2::SDL2)
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.client)
