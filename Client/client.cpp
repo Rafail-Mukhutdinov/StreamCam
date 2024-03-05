@@ -1,11 +1,19 @@
-#include "widget.h"
+#include "device.h"
 
-#include <QApplication>
 
+// Объявляем метод main
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    Widget w;
-    w.show();
-    return a.exec();
+  avdevice_register_all();
+    // Создаем контекст для входного потока
+  AVFormatContext *input_context = NULL;
+    // Создаем пакет для хранения данных
+  AVPacket *packet = NULL;
+  device dev("/dev/video0");
+  // Вызываем функцию, которая выводит данные в консоль в виде текста
+  dev.output_data_as_text(input_context, packet);
+  // Возвращаем 0 в случае успеха
+  return 0;
 }
+
+
