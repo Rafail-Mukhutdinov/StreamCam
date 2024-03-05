@@ -47,13 +47,5 @@ void device::output_data_as_text(AVFormatContext* in_context, AVPacket* in_packe
 
   this->readAndPrintPacketData(in_context, in_packet);
 
-  // Освобождаем память от пакета
-  av_packet_free(&in_packet);
-
-  // Закрываем входное устройство
-  avformat_close_input(&in_context);
-
-  // Освобождаем память от контекста
-  avformat_free_context(in_context);
 }
 
