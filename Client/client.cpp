@@ -4,6 +4,7 @@
 #include <QVBoxLayout>
 #include <QImage>
 #include <QTimer>
+#include <QDebug>
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavdevice/avdevice.h>

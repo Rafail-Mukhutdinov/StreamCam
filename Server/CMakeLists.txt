@@ -26,7 +26,8 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavcodec libavformat libavut
 
 set(PROJECT_SOURCES
         server.cpp
-
+        device.cpp
+        device.h
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
