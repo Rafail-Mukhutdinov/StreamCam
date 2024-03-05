@@ -24,15 +24,11 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia) # Д�
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavcodec libavformat libavutil libavfilter libavdevice libswscale libswresample)
 
-# Ищем библиотеку SDL2
-find_package(SDL2 REQUIRED)
+
 
 set(PROJECT_SOURCES
         client.cpp
-        sdl_check.h
-        widget.cpp
-        widget.h
-        widget.ui
+
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
@@ -44,7 +40,7 @@ else()
     add_executable(client ${PROJECT_SOURCES})
 endif()
 
-target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia PkgConfig::FFMPEG Boost::asio Boost::regex Boost::algorithm Boost::json Boost::log Boost::property_tree SDL2::SDL2)
+target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia PkgConfig::FFMPEG Boost::asio Boost::regex Boost::algorithm Boost::json Boost::log Boost::property_tree)
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.client)
