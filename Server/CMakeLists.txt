@@ -1,9 +1,21 @@
 project(server)
 
 
+set(Boost_USE_STATIC_LIBS        ON)
+set(Boost_USE_DEBUG_LIBS        OFF)
+set(Boost_USE_RELEASE_LIBS       ON)
+set(Boost_USE_MULTITHREADED      ON)
+set(Boost_USE_STATIC_RUNTIME    OFF)
+set(Boost_NO_WARN_NEW_VERSIONS  ON)
 
-# Добавьте исполняемый файл и исходные файлы проекта
-add_executable(server server.cpp)
 
-# Укажите библиотеки, которые необходимо связать с исполняемым файлом
-target_link_libraries(server avformat avcodec avutil avdevice swscale)
+add_executable(server   server.cpp 
+                        device.cpp
+                        device.h)
+
+
+target_link_libraries(server avformat avcodec avutil avfilter avdevice swscale Boost::asio Boost::regex Boost::algorithm Boost::json Boost::log Boost::property_tree)
+
+
+
+
