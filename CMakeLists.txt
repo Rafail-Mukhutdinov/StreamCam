@@ -2,18 +2,6 @@
 cmake_minimum_required(VERSION 3.27)
 project(StreamCam)
 
-# Подключите Boost
-# asio regex algorithm date_time filesystem system program_options json thread
-set(BOOST_INCLUDE_LIBRARIES log asio regex algorithm date_time filesystem system program_options json thread ) # Укажите нужные вам компоненты Boost
-set(BOOST_ENABLE_CMAKE ON)
-
-include(FetchContent)
-FetchContent_Declare(
-  Boost
-  URL https://github.com/boostorg/boost/releases/download/boost-1.83.0/boost-1.83.0.7z # Укажите нужную вам версию Boost
-)
-FetchContent_MakeAvailable(Boost)
-
 
 # Подключите Google Test
 include(FetchContent)

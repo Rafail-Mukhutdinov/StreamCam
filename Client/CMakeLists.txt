@@ -1,5 +1,3 @@
-# Устанавливаем флаг для правильной компоновки с Boost
-set(CMAKE_CXX_FLAGS_INIT "-static-libgcc -static-libstdc++")
 
 project(client VERSION 0.1 LANGUAGES CXX)
 
@@ -17,8 +15,8 @@ set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
 set(Boost_NO_WARN_NEW_VERSIONS  ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia) # Добавлен компонент Multimedia
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia) # Добавлен компонент Multimedia
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network )
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network )
 
 # Ищем библиотеки FFmpeg с помощью pkg-config
 find_package(PkgConfig REQUIRED)
@@ -40,7 +38,7 @@ else()
     add_executable(client ${PROJECT_SOURCES})
 endif()
 
-target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia PkgConfig::FFMPEG Boost::asio Boost::regex Boost::algorithm Boost::json Boost::log Boost::property_tree)
+target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network PkgConfig::FFMPEG )
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.client)
